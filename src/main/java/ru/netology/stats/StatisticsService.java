@@ -11,30 +11,29 @@ public class StatisticsService {
     }
 
     public long averageSumPerMounth(long[] purchases) {
-        long sum = 0;
-        for (long purchase : purchases) {
-            // аналог sum = sum + purchase;
-            sum += purchase;
-        }
-        long averageSum = sum / purchases.length;
+        long averageSum = calculateSum(purchases) / purchases.length;
         return averageSum;
     }
 
     public long findMax(long[] purchases) {
-        long currentMax = purchases[0];
-        for (long purchase : purchases) {
-            if (currentMax < purchase) {
-                currentMax = purchase;
+        long salesMax = purchases[0];
+        int currentMax = 1;
+        for (int i = 1; i < purchases.length; i++) {
+            if (purchases[i] >= salesMax) {
+                salesMax = purchases[i];
+                currentMax = i + 1;
             }
         }
         return currentMax;
     }
 
     public long findMin(long[] purchases) {
-        long currentMin = purchases[0];
-        for (long purchase : purchases) {
-            if (currentMin > purchase) {
-                currentMin = purchase;
+        long salesMin = purchases[0];
+        int currentMin = 1;
+        for (int i = 1; i < purchases.length; i++) {
+            if (purchases[i] <= salesMin) {
+                salesMin = purchases[i];
+                currentMin = i + 1;
             }
         }
         return currentMin;
@@ -42,15 +41,12 @@ public class StatisticsService {
 
     public long numberOfMounthLessAverageSum(long[] purchases) {
 
-        StatisticsService service = new StatisticsService();
-        long averageSum = service.averageSumPerMounth(purchases);
-
+        long averageSum = averageSumPerMounth(purchases);
         long counterOfMounths = 0;
+
         for (long purchase : purchases) {
             if (purchase < averageSum) {
-                long index = 0;
-                purchase = index;
-                counterOfMounths += purchase + 1;
+                counterOfMounths ++;
             }
         }
 
@@ -59,15 +55,12 @@ public class StatisticsService {
 
     public long numberOfMounthMoreAverageSum(long[] purchases) {
 
-        StatisticsService service = new StatisticsService();
-        long averageSum = service.averageSumPerMounth(purchases);
-
+        long averageSum = averageSumPerMounth(purchases);
         long counterOfMounths = 0;
+
         for (long purchase : purchases) {
-            if (purchase < averageSum) {
-                long index = 0;
-                purchase = index;
-                counterOfMounths += purchase + 1;
+            if (purchase > averageSum) {
+                counterOfMounths ++;
             }
         }
 

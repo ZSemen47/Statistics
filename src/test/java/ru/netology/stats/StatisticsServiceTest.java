@@ -5,11 +5,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StatisticsServiceTest {
+
+    long[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
+
     @Test
     void calculateSum() {
         StatisticsService service = new StatisticsService();
 
-        long[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
         long expected = 180;
 
         long actual = service.calculateSum(purchases);
@@ -21,7 +23,6 @@ class StatisticsServiceTest {
     void averageSumPerMounth() {
         StatisticsService service = new StatisticsService();
 
-        long[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
         long expected = 15;
 
         long actual = service.averageSumPerMounth(purchases);
@@ -33,8 +34,7 @@ class StatisticsServiceTest {
     void findMax() {
         StatisticsService service = new StatisticsService();
 
-        long[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        long expected = 20;
+        long expected = 8;
 
         long actual = service.findMax(purchases);
 
@@ -45,8 +45,7 @@ class StatisticsServiceTest {
     void findMin() {
         StatisticsService service = new StatisticsService();
 
-        long[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        long expected = 7;
+        long expected = 9;
 
         long actual = service.findMin(purchases);
 
@@ -57,7 +56,6 @@ class StatisticsServiceTest {
     void numberOfMounthWithLessAverageSum() {
         StatisticsService service = new StatisticsService();
 
-        long[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
         long expected = 5;
 
         long actual = service.numberOfMounthLessAverageSum(purchases);
@@ -69,7 +67,6 @@ class StatisticsServiceTest {
     void numberOfMounthWithMoreAverageSum() {
         StatisticsService service = new StatisticsService();
 
-        long[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
         long expected = 5;
 
         long actual = service.numberOfMounthMoreAverageSum(purchases);
